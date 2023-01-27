@@ -19,6 +19,7 @@
                   <ColorPicker fx:id="colorPicker" />
                   <TextField fx:id="bSize" text="12" />
                   <Button fx:id="newCanvas" mnemonicParsing="false" onAction="#newcanvas" text="new Canvas" />
+                  <Button fx:id="rectangle" mnemonicParsing="false" onAction="#printRectangle" prefHeight="29.0" prefWidth="72.0" text="Rectangle" />
                </children>
                <padding>
                   <Insets left="20.0" top="10.0" />

@@ -24,6 +24,7 @@ public class DrawFree extends DrawShape {
             size = Double.parseDouble(bSize.getText());
             double x = mouseEvent.getX();
             double y = mouseEvent.getY();
+
             graphicsContext.setStroke(colorPicker.getValue());
             graphicsContext.setLineWidth(size);
             graphicsContext.strokeLine(lastX, lastY, x, y);

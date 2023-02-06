@@ -5,8 +5,8 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.control.TextField;
 
-public class DrawHexagon extends DrawShape {
-    public DrawHexagon(GraphicsContext graphicsContext) {
+public class DrawTriangle extends DrawShape {
+    public DrawTriangle(GraphicsContext graphicsContext) {
         super(graphicsContext);
     }
 
@@ -21,28 +21,19 @@ public class DrawHexagon extends DrawShape {
         });
 
         canvas.setOnMouseReleased(mouseEvent -> {
-
             x2 = mouseEvent.getX();
             y2 = mouseEvent.getY();
-            double height = Math.abs(x2 - x);
-
-            double[] xPoints = new double[6];
-            double[] yPoints = new double[6];
-
-            for (int i = 0; i < 6; i++) {
-
-                xPoints[i] = ((x+x2)/2) + height  * Math.cos(Math.PI / 3 * i + Math.PI / 6);
-                yPoints[i] = ((y+y2)/2) + height  * Math.sin(Math.PI / 3 * i + Math.PI / 6);
-            }
+            double[] xPoints = {x, x + (x2 - x) / 2, x2};
+            double[] yPoints = {y2, y, y2};
             if (esRelleno) {
                 graphicsContext.setFill(colorPicker.getValue());
-                graphicsContext.fillPolygon(xPoints, yPoints, 6);
+                graphicsContext.fillPolygon(xPoints, yPoints, 3);
                 esRelleno = false;
             } else {
                 size = Double.parseDouble(bSize.getText());
                 graphicsContext.setLineWidth(size);
                 graphicsContext.setStroke(colorPicker.getValue());
-                graphicsContext.strokePolygon(xPoints, yPoints, 6);
+                graphicsContext.strokePolygon(xPoints, yPoints, 3);
             }
 
         });
@@ -53,4 +44,5 @@ public class DrawHexagon extends DrawShape {
         graphicsContext.getCanvas().setOnMousePressed(null);
         graphicsContext.getCanvas().setOnMouseReleased(null);
     }
+
 }

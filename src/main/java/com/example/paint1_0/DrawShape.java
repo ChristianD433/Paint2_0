@@ -8,7 +8,11 @@ public abstract class DrawShape {
     protected GraphicsContext graphicsContext;
     protected double x = 0;
     protected double y = 0;
+    protected double x2 = 0;
+    protected double y2 = 0;
+
     protected double size = 12;
+    protected boolean esRelleno = false;
 
 
     public DrawShape(GraphicsContext graphicsContext) {

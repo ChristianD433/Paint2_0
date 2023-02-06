@@ -5,13 +5,10 @@ import javafx.scene.control.ColorPicker;
 import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
 
-public class DrawRectangle extends DrawShape {
-    protected Double x2 = 0D;
-    protected Double y2 = 0D;
-    boolean esRelleno = false;
+public class DrawRectangle extends DrawShapeRegularIrregular {
 
-    public DrawRectangle(GraphicsContext graphicsContext) {
-        super(graphicsContext);
+    public DrawRectangle(GraphicsContext graphicsContext, boolean isRegular) {
+        super(graphicsContext, isRegular);
     }
 
     @Override
@@ -34,9 +31,10 @@ public class DrawRectangle extends DrawShape {
             double startX = Math.min(x, x2);
             double startY = Math.min(y, y2);
 
+            if (this.isRegular()) height = width;
+
             graphicsContext.setStroke(colorPicker.getValue());
             graphicsContext.setLineWidth(Double.parseDouble(bSize.getText()));
-
 
             if (esRelleno) {
                 graphicsContext.setFill(colorPicker.getValue());

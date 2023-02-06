@@ -19,13 +19,18 @@ public class HelloController implements Initializable {
     private Button buttonFreeDraw;
     @FXML
     private Button buttonRectangleDraw;
-
     @FXML
     private Button buttonHexagonDraw;
     @FXML
     private Button buttonPerfectCircle;
     @FXML
     private Button buttonOval;
+    @FXML
+    private Button buttonSquare;
+    @FXML
+    private Button buttonTriangle;
+    @FXML
+    private Button buttonHeart;
 
     @FXML
     private ColorPicker colorPicker;
@@ -45,21 +50,27 @@ public class HelloController implements Initializable {
     }
 
     public void initializeDraws(GraphicsContext graphicsContext) {
-        DrawRectangle drawRectangle = new DrawRectangle(graphicsContext);
+        DrawRectangle drawRectangle = new DrawRectangle(graphicsContext, false);
         DrawFree drawFree = new DrawFree(graphicsContext);
         DrawHexagon drawHexagon = new DrawHexagon(graphicsContext);
-        DrawPerfectCircle drawPerfectCircle = new DrawPerfectCircle(graphicsContext);
-        DrawOval drawOval = new DrawOval(graphicsContext);
+        DrawCircle drawPerfectCircle = new DrawCircle(graphicsContext, true);
+        DrawCircle drawOval = new DrawCircle(graphicsContext, false);
+        DrawRectangle drawSquare = new DrawRectangle(graphicsContext, true);
+        DrawTriangle drawTriangle = new DrawTriangle(graphicsContext);
+        DrawHeart drawHeart = new DrawHeart(graphicsContext);
 
         hashMapOperaciones.put(buttonFreeDraw, drawFree);
         hashMapOperaciones.put(buttonRectangleDraw, drawRectangle);
         hashMapOperaciones.put(buttonHexagonDraw, drawHexagon);
         hashMapOperaciones.put(buttonPerfectCircle, drawPerfectCircle);
         hashMapOperaciones.put(buttonOval, drawOval);
+        hashMapOperaciones.put(buttonSquare, drawSquare);
+        hashMapOperaciones.put(buttonTriangle, drawTriangle);
+        hashMapOperaciones.put(buttonHeart, drawHeart);
 
         for (Button button : hashMapOperaciones.keySet()) {
             button.setOnAction(actionEvent -> {
-                if (currentDraw != null){
+                if (currentDraw != null) {
                     currentDraw.release();
                 }
                 currentDraw = hashMapOperaciones.get(button);

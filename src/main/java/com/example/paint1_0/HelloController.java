@@ -1,6 +1,5 @@
 package com.example.paint1_0;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.canvas.Canvas;
@@ -12,7 +11,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
 
 import java.net.URL;
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.ResourceBundle;
 
 public class HelloController implements Initializable {
@@ -22,7 +21,12 @@ public class HelloController implements Initializable {
     private Button buttonRectangleDraw;
 
     @FXML
-    private Button buttonFullHexagonDraw;
+    private Button buttonHexagonDraw;
+    @FXML
+    private Button buttonPerfectCircle;
+    @FXML
+    private Button buttonOval;
+
     @FXML
     private ColorPicker colorPicker;
     @FXML
@@ -32,46 +36,40 @@ public class HelloController implements Initializable {
 
     private DrawShape currentDraw = null;
 
-    private ArrayList<DrawShape> listaDraws = new ArrayList<>();
+    HashMap<Button, DrawShape> hashMapOperaciones = new HashMap<>();
 
-    private int eleccion = 0;
 
     public void initialize(URL url, ResourceBundle resourceBundle) {
         colorPicker.setValue(Color.BLACK);
-        initializeListeners();
-        initializeOperations(canvas.getGraphicsContext2D());
-        cambioDibujo(0);
+        initializeDraws(canvas.getGraphicsContext2D());
     }
 
-    public void initializeOperations(GraphicsContext graphicsContext) {
+    public void initializeDraws(GraphicsContext graphicsContext) {
         DrawRectangle drawRectangle = new DrawRectangle(graphicsContext);
         DrawFree drawFree = new DrawFree(graphicsContext);
         DrawHexagon drawHexagon = new DrawHexagon(graphicsContext);
-        listaDraws.add(drawFree);
-        listaDraws.add(drawRectangle);
-        listaDraws.add(drawHexagon);
-    }
+        DrawPerfectCircle drawPerfectCircle = new DrawPerfectCircle(graphicsContext);
+        DrawOval drawOval = new DrawOval(graphicsContext);
 
-    public void initializeListeners() {
-        buttonFreeDraw.setOnAction(actionEvent -> {
-            cambioDibujo(0);
-        });
-        buttonRectangleDraw.setOnAction(actionEvent -> {
-            cambioDibujo(1);
-        });
-        buttonFullHexagonDraw.setOnAction(actionEvent -> {
-            cambioDibujo(2);
-        });
-    }
+        hashMapOperaciones.put(buttonFreeDraw, drawFree);
+        hashMapOperaciones.put(buttonRectangleDraw, drawRectangle);
+        hashMapOperaciones.put(buttonHexagonDraw, drawHexagon);
+        hashMapOperaciones.put(buttonPerfectCircle, drawPerfectCircle);
+        hashMapOperaciones.put(buttonOval, drawOval);
 
-    public void cambioDibujo(int opcionDibujo) {
-        if (currentDraw != null) currentDraw.release();
-        currentDraw = listaDraws.get(opcionDibujo);
-        currentDraw.draw(colorPicker, bSize);
+        for (Button button : hashMapOperaciones.keySet()) {
+            button.setOnAction(actionEvent -> {
+                if (currentDraw != null){
+                    currentDraw.release();
+                }
+                currentDraw = hashMapOperaciones.get(button);
+                currentDraw.draw(colorPicker, bSize);
+            });
+        }
     }
 
     @FXML
-    public void newcanvas(ActionEvent e) {
+    public void newcanvas() {
         canvas.getGraphicsContext2D().clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
     }
 }

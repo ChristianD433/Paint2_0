@@ -1,20 +1,8 @@
 package com.example.paint1_0;
 
-
-import javafx.geometry.Bounds;
-import javafx.scene.SnapshotParameters;
-import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.control.TextField;
-
-import javafx.scene.image.WritableImage;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.LineTo;
-import javafx.scene.shape.MoveTo;
-import javafx.scene.shape.Path;
-import javafx.scene.shape.SVGPath;
-
 
 public class DrawFree extends DrawShape {
     double lastX = 0;

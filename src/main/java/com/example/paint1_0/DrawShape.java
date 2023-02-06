@@ -3,7 +3,6 @@ package com.example.paint1_0;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.control.TextField;
-import javafx.scene.paint.Color;
 
 public abstract class DrawShape {
     protected GraphicsContext graphicsContext;

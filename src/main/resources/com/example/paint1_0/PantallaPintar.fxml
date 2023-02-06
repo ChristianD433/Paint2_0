@@ -17,7 +17,9 @@
                <children>
                   <Button fx:id="buttonFreeDraw" mnemonicParsing="false" prefHeight="29.0" prefWidth="108.0" text="Pintar Suelto" />
                   <Button fx:id="buttonRectangleDraw" mnemonicParsing="false" prefHeight="29.0" prefWidth="72.0" text="Rectangle" />
-                  <Button fx:id="buttonFullHexagonDraw" mnemonicParsing="false" text="Hexagono" />
+                  <Button fx:id="buttonHexagonDraw" mnemonicParsing="false" text="Hexagono" />
+                  <Button fx:id="buttonPerfectCircle" mnemonicParsing="false" text="Circulo" />
+                  <Button fx:id="buttonOval" mnemonicParsing="false" text="Ovalo" />
                   <ColorPicker fx:id="colorPicker" />
                   <TextField fx:id="bSize" text="12" />
                   <Button fx:id="newCanvas" mnemonicParsing="false" onAction="#newcanvas" text="new Canvas" />

@@ -1,3 +1,5 @@
+
+
 package com.example.paint1_0;
 
 import javafx.scene.canvas.GraphicsContext;
